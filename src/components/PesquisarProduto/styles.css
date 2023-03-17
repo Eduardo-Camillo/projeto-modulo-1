@@ -1,0 +1,17 @@
+.caixa-quantidade{
+    width: 40px;
+    margin: 5px;
+}
+.container-pesquisar{
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+}
+.caixa-produto{
+width: 60px;
+margin: 5px;
+} 
+.subtitulo-produto{
+    text-transform: uppercase;
+margin: 8px;
+}
