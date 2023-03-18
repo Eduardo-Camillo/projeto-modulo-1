@@ -73,7 +73,7 @@ export default function PesquisarProduto({ produtos, setProduto }) {
                 <div>Quantidade:</div>
                 <input className='caixa-quantidade' type='number' ref={inputQuantidadeRef}></input>
             </div>
-            <button onClick={handleAdicionar}>Adicionar</button>
+            <button onClick={handleAdicionar} >Adicionar</button>
         </div>
     )
 }

@@ -1,10 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './styles.css';
+
+
 
 export default function CupomFiscal({ produto }) {
 
+    const [novoProduto, setNovoProduto] = useState([]);
+
+    const Multiplicaçao = useCallback(() => {
+        produto.map((val, key) => {
+            const { preco, qnt } = val;
+            const total = preco * Number(qnt);
+
+            val.total = total.toFixed(2);
+            return setNovoProduto([...novoProduto, val]);
+
+        })
+
+    }, [produto]);
+
+
+    useEffect(() => {
+        Multiplicaçao();
+
+    },)
     return (
         <body>
+            <h3>Cupom Fiscal</h3>
             <table>
                 <thead>
                     <tr>
@@ -18,7 +40,7 @@ export default function CupomFiscal({ produto }) {
                 </thead>
                 <tbody>
                     {
-                        produto.map((val, key) => {
+                        novoProduto.map((val, key) => {
                             return (
                                 <tr key={key}>
                                     <td>O.p</td>
@@ -26,7 +48,7 @@ export default function CupomFiscal({ produto }) {
                                     <td>{val.descricao}</td>
                                     <td>R${val.preco}</td>
                                     <td>{val.qnt}</td>
-                                    <td>{val.preco}</td>
+                                    <td>{val.total}</td>
                                 </tr>
                             )
                         })
