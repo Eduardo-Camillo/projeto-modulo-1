@@ -1,6 +1,11 @@
 th {
     border-bottom: 1px solid #155263;
+    margin: 3px;
   }
 table{
 border: 1px solid #155263;
+margin: 3px;
+  }
+  h3{
+    text-align: center;
   }

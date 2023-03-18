@@ -1,15 +1,18 @@
-import Cabecalho from './components/Cabecalho';
-import { useState } from 'react';
-import './App.css';
 import ListaProdutos from './components/ListaProdutos';
 import PesquisarProduto from './components/PesquisarProduto';
 import CupomFiscal from './components/CupomFiscal';
+import CarrinhoCompras from './components/CarrinhoCompras';
+import Cabecalho from './components/Cabecalho';
+import { useState } from 'react';
+import './App.css';
 
 
 function App() {
 
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [produto, setProduto] = useState([]);
 
   useState(() =>
     fetch('produtos.json')
@@ -29,8 +32,9 @@ function App() {
       <Cabecalho />
       <div className='App-container'>
         <ListaProdutos produtos={produtos} />
-        <PesquisarProduto produtos={produtos} />
-        <CupomFiscal />
+        <PesquisarProduto produtos={produtos} setProduto={setProduto} />
+        <CarrinhoCompras produto={produto} />
+        <CupomFiscal produto={produto} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 [
-	{ "codigo": 1001, "descricao": "Televisão 32 pol", "marca": "ACME", "preco": 998.00, "imagem": "" },
+	{ "codigo": 1001, "descricao": "Televisão 32 pol", "marca": "ACME", "preco": 998.00, "imagem": "https://img.olx.com.br/images/09/096353019618671.jpg" },
 	{ "codigo": 1002, "descricao": "Tablet", "marca": "ACME", "preco": 815.00, "imagem": "" },
 	{ "codigo": 1003, "descricao": "Aparelho Celular", "marca": "ACME", "preco": 777.70, "imagem": "" },
 	{ "codigo": 1004, "descricao": "Mesa", "marca": "Lannister", "preco": 557.70, "imagem": "" },
