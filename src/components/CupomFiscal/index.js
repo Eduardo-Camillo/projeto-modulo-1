@@ -1,33 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
 import './styles.css';
 
 
 
 export default function CupomFiscal({ produto }) {
 
-    const [novoProduto, setNovoProduto] = useState([]);
-
-    const Multiplicaçao = useCallback(() => {
-        produto.map((val, key) => {
-            const { preco, qnt } = val;
-            const total = preco * Number(qnt);
-
-            val.total = total.toFixed(2);
-            return setNovoProduto([...novoProduto, val]);
-
-        })
-
-    }, [produto]);
-
-
-    useEffect(() => {
-        Multiplicaçao();
-
-    },)
+    const multiplicaçao = (produto) => {
+        const { preco, qnt } = produto;
+        const total = preco * Number(qnt);
+        produto.total = total.toFixed(2);
+        return produto;
+    }
     return (
         <body>
-            <h3>Cupom Fiscal</h3>
-            <table>
+
+            <h3 className='Cabecalho-cupom'>Cupom Fiscal</h3>
+            <table className='Cupom-fiscal'>
                 <thead>
                     <tr>
                         <th>Operador</th>
@@ -35,12 +22,14 @@ export default function CupomFiscal({ produto }) {
                         <th>Produto</th>
                         <th>Preço Unitário</th>
                         <th>Qnt</th>
-                        <th>Preço</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        novoProduto.map((val, key) => {
+                        produto.map((val, key) => {
+                            const total = val.preco * Number(val.qnt);
+                            val.total = total.toFixed(2);
                             return (
                                 <tr key={key}>
                                     <td>O.p</td>
@@ -53,8 +42,11 @@ export default function CupomFiscal({ produto }) {
                             )
                         })
                     }
+
                 </tbody>
+
             </table>
+            <button className='imprimir'>Imprimir</button>
         </body>
     )
 }

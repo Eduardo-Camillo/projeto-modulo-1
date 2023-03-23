@@ -1,21 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
 import './styles.css';
 
-export default function PesquisarProduto({ produtos, setProduto }) {
+export default function PesquisarProduto({ produtos, setProduto, produto }) {
 
     const inputCodigoRef = useRef();
     const inputQuantidadeRef = useRef();
-    const [prevValue, setPrevValue] = useState([]);
     const [atualizado, setAtualizado] = useState(false);
     const [atualizado2, setAtualizado2] = useState(false);
     const [atualizado3, setAtualizado3] = useState(false);
 
     function handleAdicionar(e) {
         e.preventDefault();
-        const produto = produtos.find((produto) => (produto.codigo) == inputCodigoRef.current.value);
+        const produtoEsc = produtos.find((produto) => (produto.codigo) === +inputCodigoRef.current.value);
         const { current: { value } } = inputQuantidadeRef;
+        const jaExiste = 'Vazio';
+        if (produto.length > 0) {
+            const existente = produto.some((existe) => existe.codigo === +inputCodigoRef.current.value);
+            if (existente) {
+                alert('Produto já está no carrinho de compras');
+                return;
+            }
+        }
 
-        if (!produto && !value) {
+        if (!produtoEsc && !value) {
             setAtualizado(true);
             setAtualizado2(false);
             setAtualizado3(false);
@@ -30,7 +37,7 @@ export default function PesquisarProduto({ produtos, setProduto }) {
             inputQuantidadeRef.current.value = '';
 
 
-        } else if (!produto) {
+        } else if (!produtoEsc) {
             setAtualizado(false);
             setAtualizado2(false);
             setAtualizado3(true)
@@ -38,24 +45,21 @@ export default function PesquisarProduto({ produtos, setProduto }) {
             inputQuantidadeRef.current.value = '';
 
 
-        }
-        else {
-            produto.qnt = value
-            setPrevValue([...prevValue, produto])
-
+        } else if (jaExiste === 'Vazio') {
+            produtoEsc.qnt = value
+            setProduto([...produto, produtoEsc])
             inputCodigoRef.current.value = '';
             inputQuantidadeRef.current.value = '';
+            setAtualizado(false);
+            setAtualizado2(false);
+            setAtualizado3(false);
 
         }
 
     }
 
     useEffect(() => {
-        setProduto(prevValue);
-        setAtualizado(false);
-        setAtualizado2(false);
-        setAtualizado3(false);
-    }, [prevValue])
+    })
 
 
     return (

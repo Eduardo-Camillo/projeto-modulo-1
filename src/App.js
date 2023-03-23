@@ -32,7 +32,7 @@ function App() {
       <Cabecalho />
       <div className='App-container'>
         <ListaProdutos produtos={produtos} />
-        <PesquisarProduto produtos={produtos} setProduto={setProduto} />
+        <PesquisarProduto produtos={produtos} setProduto={setProduto} produto={produto} />
         <CarrinhoCompras produto={produto} />
         <CupomFiscal produto={produto} />
       </div>

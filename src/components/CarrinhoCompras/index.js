@@ -6,6 +6,7 @@ export default function CarrinhoCompras({ produto }) {
         <div>
             <h3>Carrinho de compras</h3>
             <table>
+
                 <thead>
                     <tr>
                         <th>Código:</th>
@@ -26,7 +27,7 @@ export default function CarrinhoCompras({ produto }) {
                                     <td>{val.descricao}</td>
                                     <td>R$ {val.preco}</td>
                                     <td>{val.marca}</td>
-                                    <td><img src={val.imagem} style={{ width: '100px' }} alt={val.descricao} /></td>
+                                    <td><img src={val.imagem} className='imgproduto' alt={val.descricao} /></td>
                                     <button>Deletar</button>
                                 </tr>
                             )
