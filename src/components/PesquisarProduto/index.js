@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './styles.css';
 
-export default function PesquisarProduto({ produtos, setProduto, produto }) {
+export default function PesquisarProduto({ produtos, setProduto, setArrayCarrinho, arrayCarrinho }) {
 
     const inputCodigoRef = useRef();
     const inputQuantidadeRef = useRef();
@@ -9,13 +9,16 @@ export default function PesquisarProduto({ produtos, setProduto, produto }) {
     const [atualizado2, setAtualizado2] = useState(false);
     const [atualizado3, setAtualizado3] = useState(false);
 
-    function handleAdicionar(e) {
-        e.preventDefault();
-        const produtoEsc = produtos.find((produto) => (produto.codigo) === +inputCodigoRef.current.value);
+    const handleAdicionar = useCallback(() => {
+        const produtoEsc = produtos.find((produto) => {
+            produto.status = '+'
+            return (produto.codigo) === +inputCodigoRef.current.value;
+        });
         const { current: { value } } = inputQuantidadeRef;
         const jaExiste = 'Vazio';
-        if (produto.length > 0) {
-            const existente = produto.some((existe) => existe.codigo === +inputCodigoRef.current.value);
+
+        if (arrayCarrinho.length > 0) {
+            const existente = arrayCarrinho.some((existe) => existe.codigo === +inputCodigoRef.current.value);
             if (existente) {
                 alert('Produto já está no carrinho de compras');
                 return;
@@ -23,7 +26,6 @@ export default function PesquisarProduto({ produtos, setProduto, produto }) {
         }
 
         if (!produtoEsc && !value) {
-            setAtualizado(true);
             setAtualizado2(false);
             setAtualizado3(false);
             inputCodigoRef.current.value = '';
@@ -47,19 +49,18 @@ export default function PesquisarProduto({ produtos, setProduto, produto }) {
 
         } else if (jaExiste === 'Vazio') {
             produtoEsc.qnt = value
-            setProduto([...produto, produtoEsc])
+            setProduto((prevValue) => [...prevValue, produtoEsc])
+            setArrayCarrinho((prevValue) => [...prevValue, produtoEsc])
             inputCodigoRef.current.value = '';
             inputQuantidadeRef.current.value = '';
             setAtualizado(false);
             setAtualizado2(false);
             setAtualizado3(false);
 
+
         }
 
-    }
-
-    useEffect(() => {
-    })
+    }, [setProduto, setArrayCarrinho, produtos, arrayCarrinho])
 
 
     return (
@@ -77,7 +78,7 @@ export default function PesquisarProduto({ produtos, setProduto, produto }) {
                 <div>Quantidade:</div>
                 <input className='caixa-quantidade' type='number' ref={inputQuantidadeRef}></input>
             </div>
-            <button onClick={handleAdicionar} >Adicionar</button>
+            <button onClick={handleAdicionar}>Adicionar</button>
         </div>
     )
 }

@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
 import './styles.css';
 
-export default function CarrinhoCompras({ produto }) {
+
+export default function CarrinhoCompras({ produto, setProduto, arrayCarrinho, setArrayCarrinho }) {
+
+    function handleDelete(e, codigo) {
+        e.preventDefault()
+        const excluidoArray = arrayCarrinho.filter((item) => item.codigo !== codigo)
+        setArrayCarrinho([...excluidoArray])
+    }
+
 
     return (
         <div>
@@ -19,7 +28,7 @@ export default function CarrinhoCompras({ produto }) {
                 </thead>
                 <tbody>
                     {
-                        produto.map((val, key) => {
+                        arrayCarrinho.map((val, key) => {
                             return (
                                 <tr key={key}>
                                     <td>{val.codigo}</td>
@@ -28,7 +37,7 @@ export default function CarrinhoCompras({ produto }) {
                                     <td>R$ {val.preco}</td>
                                     <td>{val.marca}</td>
                                     <td><img src={val.imagem} className='imgproduto' alt={val.descricao} /></td>
-                                    <button>Deletar</button>
+                                    <button onClick={(e) => handleDelete(e, val.codigo)}>Deletar</button>
                                 </tr>
                             )
                         })

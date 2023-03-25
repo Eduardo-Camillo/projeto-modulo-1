@@ -1,8 +1,12 @@
+import { useEffect, useState } from 'react';
 import './styles.css';
 
 
 
 export default function CupomFiscal({ produto }) {
+
+    const [arrayCupom, setArrayCupom] = useState([]);
+    //2 do, acrescentar - no cupom fiscal
 
     const multiplicaçao = (produto) => {
         const { preco, qnt } = produto;
@@ -10,6 +14,11 @@ export default function CupomFiscal({ produto }) {
         produto.total = total.toFixed(2);
         return produto;
     }
+
+    useEffect(() => {
+        setArrayCupom([...produto])
+    }, [produto])
+
     return (
         <body>
 
@@ -27,12 +36,12 @@ export default function CupomFiscal({ produto }) {
                 </thead>
                 <tbody>
                     {
-                        produto.map((val, key) => {
+                        arrayCupom.map((val, key) => {
                             const total = val.preco * Number(val.qnt);
                             val.total = total.toFixed(2);
                             return (
                                 <tr key={key}>
-                                    <td>O.p</td>
+                                    <td>{val.status}</td>
                                     <td>{val.codigo}</td>
                                     <td>{val.descricao}</td>
                                     <td>R${val.preco}</td>
