@@ -1,3 +1,4 @@
+import React from 'react';
 import './styles.css';
 
 export default function ListaProdutos({ produtos }) {
@@ -8,7 +9,7 @@ export default function ListaProdutos({ produtos }) {
             <table>
                 <tr>
                     <th>Código</th>
-                    <th>Descriçao</th>
+                    <th>Descrição</th>
                     <th>Marca</th>
                     <th>Preço</th>
                 </tr>

@@ -1,3 +1,13 @@
 .imgproduto {
     width: 100px;
+    border: 1px black dotted
+}
+.img-h3{
+    float:right;
+    width: 60px;
+    align-items: center;
+}
+.h3-carrinho{
+    text-align: center;
+    
 }

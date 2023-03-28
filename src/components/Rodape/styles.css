@@ -1,0 +1,14 @@
+.rodape {
+     background-color: #ff9a3c;
+     text-align: center;
+    
+    border: 2px solid #155263;
+    font-weight: bold;
+    font-size: 18px;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
