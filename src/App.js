@@ -4,8 +4,8 @@ import CupomFiscal from './components/CupomFiscal';
 import CarrinhoCompras from './components/CarrinhoCompras';
 import Cabecalho from './components/Cabecalho';
 import { useState } from 'react';
-import './App.css';
 import { Rodape } from './components/Rodape';
+import './App.css';
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
         <ListaProdutos produtos={produtos} />
         <PesquisarProduto produtos={produtos} setProduto={setProduto} setArrayCarrinho={setArrayCarrinho} arrayCarrinho={arrayCarrinho} />
         <CarrinhoCompras setProduto={setProduto} arrayCarrinho={arrayCarrinho} setArrayCarrinho={setArrayCarrinho} produtos={produtos} />
-        <CupomFiscal produto={produto} somando={somando} setSomando={setSomando} />
+        <CupomFiscal produto={produto} somando={somando} setSomando={setSomando} arrayCarrinho={arrayCarrinho} setArrayCarrinho={setArrayCarrinho} />
       </div>
       <Rodape />
     </div>

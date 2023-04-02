@@ -4,6 +4,9 @@ import './styles.css';
 
 export default function CarrinhoCompras({ produtos, setProduto, arrayCarrinho, setArrayCarrinho }) {
   const [negativo, setNegativo] = useState([]);
+
+
+
   function handleDelete(e, codigo) {
     e.preventDefault()
 

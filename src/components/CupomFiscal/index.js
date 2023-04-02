@@ -5,6 +5,11 @@ export default function CupomFiscal({ produto, somando, setSomando }) {
 
   const [arrayCupom, setArrayCupom] = useState([]);
 
+  function apagaTudo() {
+    alert("Cupom fiscal adicionado na fila de impressão!")
+  }
+
+
   useEffect(() => {
     setArrayCupom([...produto]);
     const total = produto.reduce((acc, val) => {
@@ -45,10 +50,10 @@ export default function CupomFiscal({ produto, somando, setSomando }) {
               )
             })
           }
-          <div>{(somando).toFixed(2)}</div>
+          <div className='total'>Total : {(somando).toFixed(2)}</div>
         </tbody>
       </table>
-      <button className='imprimir'>Imprimir</button>
+      <button className='imprimir' onClick={apagaTudo}>Imprimir</button>
     </body>
   )
 }
